@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Keyboard from './components/Keyboard';
+import SingleGuess from './components/SingleGuess';
+import { compare } from './util';
 
 function App() {
+  const [guesses, setGuesses] = useState([]);
+  const len = 5;
+  console.log(guesses)
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       {guesses.map((guess) => (
+        <SingleGuess results={compare(() => guess)} />
+      ))}
+
+      <Keyboard setGuesses={setGuesses} len={len}/>
+     
     </div>
   );
 }

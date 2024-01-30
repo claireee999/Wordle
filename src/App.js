@@ -18,7 +18,6 @@ function App() {
   .then(response => response.json())
   .then(data => { 
                   setAnswer(data.word.toUpperCase()); 
-                  //console.log(data.word)
                 })
   .catch(error => console.error(error));
 },[])

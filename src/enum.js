@@ -1,5 +1,7 @@
-export const Color  = {
-    CORRECT: 'red',
+export const Color = {
+    CORRECT: 'green',
     WRONGPOS: 'yellow',
-    NOTEXIST: 'grey'
+    NOTEXIST: 'grey',
+    INITIAL: 'white'
+
   };

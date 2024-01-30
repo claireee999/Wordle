@@ -3,16 +3,15 @@ import { Color } from '../enum.js'
 import { compare } from '../util.js';
 
 const SingleGuess = (props) => {
-    console.log(props.results)
+    //console.log(props.results);
 
-    
     return(
-        <>
+        <div>
         {props.results.map(({char, color}) => (
-            <label htmlFor="textBox" color={color}>{char}</label>
+            <span style={{ backgroundColor: `${color}`}}>{char}</span> 
 
         ))}
-        </>
+        </div>
     );
 
 };

@@ -1,0 +1,31 @@
+import { Color } from './enum';
+
+export const keyColors = {
+    A: Color.INITIAL,
+    B: Color.INITIAL,
+    C: Color.INITIAL,
+    D: Color.INITIAL,
+    E: Color.INITIAL,
+    F: Color.INITIAL,
+    G: Color.INITIAL,
+    H: Color.INITIAL,
+    I: Color.INITIAL,
+    J: Color.INITIAL,
+    K: Color.INITIAL,
+    L: Color.INITIAL,
+    M: Color.INITIAL,
+    N: Color.INITIAL,
+    O: Color.INITIAL,
+    P: Color.INITIAL, 
+    Q: Color.INITIAL,
+    R: Color.INITIAL,
+    S: Color.INITIAL,
+    T: Color.INITIAL,
+    U: Color.INITIAL,
+    V: Color.INITIAL,
+    W: Color.INITIAL,
+    X: Color.INITIAL,
+    Y: Color.INITIAL,
+    Z: Color.INITIAL,
+  }
+  

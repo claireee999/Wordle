@@ -9,7 +9,7 @@ const Keyboard = (props) => {
   const [message, setMessage] = useState('');
   
   const handleKeyPress = (event) => {
-    console.log(event.key);
+    //.log(event.key);
     const isAlphanumeric = /^[a-zA-Z]$/;
     if (isAlphanumeric.test(event.key)) {
       if (input.length === props.len) return;
@@ -54,7 +54,7 @@ const Keyboard = (props) => {
   const handleInvalidWord = () => {
     setDisplayPopUp(true);
     setMessage("Invalid Word. Stupid!");
-    console.log(displayPopUp);
+    //console.log(displayPopUp);
     setTimeout(() => {
       setDisplayPopUp(false);
     }, 3000);
@@ -63,7 +63,7 @@ const Keyboard = (props) => {
   }
  
   const handleSubmit = () => {
-    console.log(input);
+    //console.log(input);
     if (input.length != props.len){
       return
      };
@@ -74,7 +74,7 @@ const Keyboard = (props) => {
                       //setIfValid('');
                       return;
                     } else{
-                      console.log(input);
+                      //log(input);
                       props.setGuesses(prev =>
                         [...prev, input]);
                       setInput('');

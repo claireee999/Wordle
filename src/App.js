@@ -8,11 +8,7 @@ import { Color } from './enum';
 
 function App() {
   const [guesses, setGuesses] = useState([]);
-  useEffect(() => {
-    console.log(guesses);
-  }, [guesses]);
   const len = 5;
-  //console.log(guesses)
 
   const [answer, setAnswer] = useState('');
   const [keyboard, setKeyboard] = useState(keyColors);
@@ -22,14 +18,14 @@ function App() {
   .then(response => response.json())
   .then(data => { 
                   setAnswer(data.word.toUpperCase()); 
-                  console.log(data.word)})
+                  //console.log(data.word)})
   .catch(error => console.error(error));
 },[])
 
 
 useEffect(() => {
   compare(guesses[guesses.length -1], answer).forEach((item) => {
-    console.log(item);
+    //console.log(item);
     setKeyboard(
         prev => {
           if (prev[item.char] === Color.CORRECT) {

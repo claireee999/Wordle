@@ -3,7 +3,6 @@ import { Color } from '../enum.js'
 import { compare } from '../util.js';
 
 const SingleGuess = (props) => {
-    //console.log(props.results);
 
     return(
         <div>

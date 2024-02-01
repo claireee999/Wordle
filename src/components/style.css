@@ -1,7 +1,92 @@
-.custom-button {
-    background-color: blue; /* Change this to the desired background color */
-    color: white; /* Change this to the desired text color */
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+.keyboard-key {
+  width: 50px;
+  height: 65px;
+  margin: 5px;
+  
+  display: inline-block;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  font-size: large;
+  border: none;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.keyboard {
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+}
+
+.keyboard-key:hover {
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5);
+
+}
+
+.buttons {
+  display: flex;
+  justify-content: center; 
+  margin-top: 5px; 
+}
+
+.buttons button {
+  width: 100px;
+  height: 40px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color:#f0f0f0;
+  color: 'black'; 
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.1); 
+}
+
+.buttons button:hover {
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5); 
+}
+
+.display-input button {
+  width: 50px;
+  height: 65px;
+  margin: 5px;
+  
+  text-align: center;
+  line-height: 40px;
+  font-size: large;
+  border: none;
+  border-radius: 3px;
+  color:black;
+  background-color:#f0f0f0;
+}
+
+.display-input  {
+  margin: 5px;
+  cursor: default; /* Disable pointer events */
+}
+
+.display-single-guess {
+  margin: 5px;
+  cursor: default; 
+}
+
+.display-single-guess button {
+  width: 50px;
+  height: 65px;
+  margin: 5px;
+  
+  display: inline-block;
+  text-align: center;
+  line-height: 40px;
+  font-size: large;
+  border: none;
+  border-radius: 3px;
+  color:black;
+
+}
+
+

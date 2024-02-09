@@ -4,21 +4,25 @@ import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import "./style.css";
 
 const Keyboard = (props) => {
-  const [input, setInput] =useState('');
+  const [input, setInput] = useState([' ', ' ', ' ', ' ', ' ']);
+  const [pos, setPos] = useState(0);
   //let pos = 0;
 
   const handleSubmit = () => {
-    if (input.length != props.len){
+    let inp = input.join('');
+    //console.log(inp);
+    if (inp.length != props.len){
       return
      };
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input}`)
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inp}`)
     .then(response => response.json())
     .then(data => { if (data["title"] === "No Definitions Found"){
                       handleInvalidWord();
                     } else{
                       props.setGuesses(prev =>
-                        [...prev, input]);
-                      setInput('');
+                        [...prev, inp]);
+                        setInput(['', '', '', '', '']);
+                        setPos(0);                      
                     }
                   })
      .catch(error => console.error(error));
@@ -28,14 +32,14 @@ const Keyboard = (props) => {
     // console.log(event.key);
     const isAlphanumeric = /^[a-zA-Z]$/;
     if (isAlphanumeric.test(event.key)) {
-      if (input.length === props.len) return;
+      if (pos >= props.len) return;
       setInput((prevInput) => {
-        if (prevInput.length < props.len) {
-          return prevInput + event.key.toUpperCase();
-        } else {
-          return prevInput;
-        }
+          const newArray = [...prevInput];
+          newArray[pos] = event.key.toUpperCase();  
+          //console.log(newArray, pos)
+          return newArray;
       });
+      setPos((prevPos) => prevPos + 1);
     } else if (event.key === 'Backspace') {
       handleDelete();
     } else if (event.key === 'Enter') {
@@ -52,18 +56,32 @@ const Keyboard = (props) => {
   }, [handleKeyPress]); 
 
   const handleKeyClick = (key) => {
-    //console.log(input.length);
-    if (input.length === props.len) return;
-    setInput((prevInput) => prevInput + key);
-    console.log(input);
+    if (pos >= props.len) return;
+    setInput((prevInput) => {
+      const newArray = [...prevInput];
+      newArray[pos] = key.toUpperCase();
+      //console.log(newArray, pos)
+      return newArray;
+      });
+    setPos((prevPos) => prevPos + 1);
   };
 
   const handleDelete = () => {
-    setInput((prevInput) => prevInput.slice(0, -1));
+    if (pos <= 0) return;
+    setInput((prevInput) => {
+      const newArray = [...prevInput];
+      newArray[pos - 1] = ' ';
+      //console.log(newArray, pos);
+      return newArray;
+      });
+      setPos((prevPos) => prevPos - 1);
+    
+    //setInput((prevInput) => prevInput.slice(0, -1));
   };
 
   const handleClear = () => {
-    setInput('');
+    setInput(['', '', '', '', '']);
+    setPos(0);
   };
 
   const handleInvalidWord = () => {
@@ -72,7 +90,7 @@ const Keyboard = (props) => {
     //console.log(displayPopUp);
     setTimeout(() => {
       props.setDisplayPopUp(false);
-    }, 3000);
+    }, 1000);
   }
 
   const renderKeys = () => {
@@ -100,12 +118,12 @@ const Keyboard = (props) => {
 
   return (
     <div>
-      <div className="display-input"> {input.split('').map((char, index) => (
-        <button key={index} className="display-button" disabled>
+      {!props.answerFound && <div className="display-input"> {input.map((char, index) => (
+        <button key={index} disabled>
           {char}
         </button>
       ))}
-      </div>
+      </div>}
       <div className="keyboard">
       {renderKeys()}
       <div className="buttons">

@@ -1,8 +1,4 @@
-
-import { useEffect, useState } from "react";
 import { Color } from "./enum";
-
-//const answer = "demon".toUpperCase()
 
 export const compare = (guess, answer) => {
     if (!guess || !answer){
@@ -12,8 +8,8 @@ export const compare = (guess, answer) => {
    
     const count = {}
     for (let i = 0; i < answer.length; i++){
-        var exist = false
-        var correctPos = false
+        let exist = false;
+        let correctPos = false;
         for (let j = 0; j < answer.length; j++){
             if (guess[i] === answer[j]){
                 exist = true;
@@ -34,23 +30,16 @@ export const compare = (guess, answer) => {
             for (const c in answer){
                 if (answer[c] === key) num += 1;
             }
-            let rightpos = false;
+            let rightpos = 0;
             if (num < count[key]){
                 results.forEach(pair => {
-                    if (pair.char === key && pair.color === Color.CORRECT) rightpos = true;
+                    if (pair.char === key && pair.color === Color.CORRECT) rightpos += 1;
                 })
-                if (rightpos){
-                    num -= 1;
-                    results.forEach(pair => {
-                        if (num === 0 && pair.char === key && pair.color != Color.CORRECT) pair.color = Color.NOTEXIST;
-                        else if (pair.char === key && pair.color != Color.CORRECT) num -= 1;
-                    })   
-                } else {
-                    results.forEach(pair => {
-                        if (num === 0 && pair.char === key) {pair.color = Color.NOTEXIST;}
-                        else if (pair.char === key) {num -= 1;}
-                    })
-                }   
+                num -= rightpos;
+                results.forEach(pair => {
+                    if (num === 0 && pair.char === key && pair.color != Color.CORRECT) pair.color = Color.NOTEXIST;
+                    else if (pair.char === key && pair.color != Color.CORRECT) num -= 1;
+                })   
             }
 
         }

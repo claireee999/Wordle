@@ -5,16 +5,36 @@ import SingleGuess from './components/SingleGuess';
 import { compare } from './util';
 import { keyColors } from './keyColors';
 import { Color } from './enum';
+import Congrats from './components/Congrats';
+import useLocalStorage from './hooks/useLocalStorage';
 
 function App() {
   const [guesses, setGuesses] = useState([]);
   const [len, setLen] = useState(5);
 
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useLocalStorage('answer', '');
   const [keyboard, setKeyboard] = useState(keyColors);
 
   const [displayPopUp, setDisplayPopUp] = useState(false);
   const [message, setMessage] = useState('');
+
+  const [answerFound, setAnswerFound] = useState(false);
+
+  const restart = () => {
+    setGuesses([]);
+    setAnswer('');
+    setDisplayPopUp(false);
+    setAnswerFound(false);
+    setMessage('');
+    setKeyboard(keyColors);
+  
+    fetch(`https://wordsapi-65da506d4353.herokuapp.com/random-word`)
+    .then(response => response.json())
+    .then(data => { 
+                    setAnswer(data.word.toUpperCase()); 
+                  })
+    .catch(error => console.error(error));
+  }
 
   useEffect(() => {
     // Get the container element
@@ -23,18 +43,18 @@ function App() {
     // Scroll to the bottom
     container.scrollTop = container.scrollHeight;
   }, [guesses]);
-
-
-
   
   useEffect(() => {
+    if (answer.length >= 0) {
+      return
+    } 
     fetch(`https://wordsapi-65da506d4353.herokuapp.com/random-word`)
     .then(response => response.json())
     .then(data => { 
                     setAnswer(data.word.toUpperCase()); 
                   })
     .catch(error => console.error(error));
-  },[]);
+  },[answer]);
 
 
   useEffect(() => {
@@ -52,9 +72,16 @@ function App() {
         )
   })},[guesses])
 
+  useEffect(() => {
+    let g = guesses[guesses.length - 1];
+    if (g === answer) setAnswerFound(true);
+    console.log(answerFound);
+  }, [guesses])
+
   return (
     <div className="App">
        {displayPopUp && <p className='display-message'>{message}</p>}
+       { answerFound && <Congrats restart={restart} tries={guesses.length}/>}
       <div className="scroll-container">
         <div className="scroll-content">
         {guesses.map((guess) => (
@@ -62,8 +89,8 @@ function App() {
         ))} 
         </div>
       </div>
-      <Keyboard setGuesses={setGuesses} len={len} keyboard={keyboard} setDisplayPopUp={setDisplayPopUp} setMessage={setMessage}/>
-    </div>
+      <Keyboard setGuesses={setGuesses} len={len} keyboard={keyboard} setDisplayPopUp={setDisplayPopUp} setMessage={setMessage} answerFound={answerFound}/>
+      </div>
   );
 }
 

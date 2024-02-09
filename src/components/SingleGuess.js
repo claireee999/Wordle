@@ -4,6 +4,7 @@ import { compare } from '../util.js';
 import "./style.css";
 
 const SingleGuess = (props) => {
+    //console.log(props);
     return(
         <div className="display-single-guess">
         {props.results.map(({char, color}) => (

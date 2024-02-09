@@ -23,14 +23,11 @@
 }
 
 .scroll-container {
-  margin-top: 20px;
-  width: 360px; 
+  margin: 5px;
   max-height: 410px;
   overflow: auto;
-  flex-direction: column; /* Ensure it's a vertical flex container */
+  display: flex;
   justify-content: center;
-  align-items: center;
-  margin: auto;
 }
 
 .scroll-content {
@@ -47,3 +44,5 @@
   background-color:rgba(212, 210, 210, 0.932);
   border-radius: 5px;
 }
+
+

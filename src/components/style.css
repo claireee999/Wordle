@@ -3,7 +3,6 @@
   height: 65px;
   margin: 5px;
   
-  display: inline-block;
   text-align: center;
   line-height: 40px;
   cursor: pointer;
@@ -56,7 +55,6 @@
   margin: 5px;
   
   text-align: center;
-  line-height: 40px;
   font-size: large;
   border: none;
   border-radius: 3px;
@@ -67,6 +65,8 @@
 .display-input  {
   margin: 5px;
   cursor: default; /* Disable pointer events */
+  display: flex;
+  justify-content: center;
 }
 
 .display-single-guess {
@@ -79,14 +79,53 @@
   height: 65px;
   margin: 5px;
   
-  display: inline-block;
   text-align: center;
   line-height: 40px;
   font-size: large;
   border: none;
   border-radius: 3px;
   color:black;
+}
 
+.congrats {
+  position: fixed;
+  justify-content: center;
+  top: 40%;
+  height: 200px;
+  width: 300px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 1001;
+  background-color:rgb(226, 226, 226);
+  border-radius: 5px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent grey overlay */
+  z-index: 1000;
+  pointer-events: none; /* Allow clicks to pass through initially */
+}
+
+.congrats button {
+  position: fixed;
+  bottom: 15px;
+  justify-content: center;
+  font: 20px;
+  transform: translate(-50%,0);
+  left: 50%;
+  height: 30px;
+  width: 80px;
+  border-radius: 3px;
+  border: none;
+}
+
+.congrats button:hover {
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.5); 
 }
 
 

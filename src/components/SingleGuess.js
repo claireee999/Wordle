@@ -1,6 +1,4 @@
-import React, { useState , useEffect } from 'react';
-import { Color } from '../enum.js'
-import { compare } from '../util.js';
+import React from 'react';
 import "./style.css";
 
 const SingleGuess = (props) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
 import "./style.css";
@@ -11,7 +11,7 @@ const Keyboard = (props) => {
   const handleSubmit = () => {
     let inp = input.join('');
     //console.log(inp);
-    if (inp.length != props.len){
+    if (inp.length !== props.len){
       return
      };
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${inp}`)

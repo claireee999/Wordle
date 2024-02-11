@@ -1,7 +1,7 @@
-import React, { useState , useEffect } from 'react';
+import React from 'react';
 import "./style.css";
 
-//<p>You beat 0% of players on this word.</p>
+//
 
 const Congrats = (props) => {
     return(
@@ -10,7 +10,7 @@ const Congrats = (props) => {
             <div className="congrats">
                 <h2>Congratulations!</h2>
                 <p>You guessed the word in {props.tries} tries.</p>
-                
+                <p>You beat 0% of players on this word.</p>
                 <button onClick={props.restart}>Try Another</button>
             </div>
         </>

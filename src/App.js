@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Keyboard from './components/Keyboard';
 import SingleGuess from './components/SingleGuess';
@@ -45,7 +45,7 @@ function App() {
   }, [guesses]);
   
   useEffect(() => {
-    if (answer.length >= 0) {
+    if (answer.length > 0) {
       return
     } 
     fetch(`https://wordsapi-65da506d4353.herokuapp.com/random-word`)
@@ -54,7 +54,7 @@ function App() {
                     setAnswer(data.word.toUpperCase()); 
                   })
     .catch(error => console.error(error));
-  },[answer]);
+  },[answer, setAnswer]);
 
 
   useEffect(() => {
@@ -70,7 +70,7 @@ function App() {
             }
           } 
         )
-  })},[guesses])
+  })},[guesses, answer])
 
   useEffect(() => {
     let g = guesses[guesses.length - 1];
@@ -81,7 +81,7 @@ function App() {
   return (
     <div className="App">
        {displayPopUp && <p className='display-message'>{message}</p>}
-       { answerFound && <Congrats restart={restart} tries={guesses.length}/>}
+       {answerFound && <Congrats restart={restart} tries={guesses.length}/>}
       <div className="scroll-container">
         <div className="scroll-content">
         {guesses.map((guess) => (

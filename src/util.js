@@ -37,8 +37,8 @@ export const compare = (guess, answer) => {
                 })
                 num -= rightpos;
                 results.forEach(pair => {
-                    if (num === 0 && pair.char === key && pair.color != Color.CORRECT) pair.color = Color.NOTEXIST;
-                    else if (pair.char === key && pair.color != Color.CORRECT) num -= 1;
+                    if (num === 0 && pair.char === key && pair.color !== Color.CORRECT) pair.color = Color.NOTEXIST;
+                    else if (pair.char === key && pair.color !== Color.CORRECT) num -= 1;
                 })   
             }
 

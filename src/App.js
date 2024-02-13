@@ -22,7 +22,7 @@ function App() {
 
   const restart = () => {
     setGuesses([]);
-    setAnswer('');
+    setAnswer('answer','');
     setDisplayPopUp(false);
     setAnswerFound(false);
     setMessage('');

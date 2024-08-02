@@ -78,6 +78,31 @@ function App() {
     console.log(answerFound);
   }, [guesses])
 
+  useEffect(() => {
+    if (answerFound) {
+      submitCount();
+      console.log(answerFound)
+    }
+  }, [answerFound]);
+
+  const submitCount = async () => {
+    try {
+      const response = await fetch(`https://wordsapi-65da506d4353.herokuapp.com/random-word`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ number: guesses.length, word: answer })
+      });
+
+      const data = await response.json();
+      setMessage(data.message);
+    } catch (error) {
+      console.error('Error updating count:', error);
+      setMessage('Error updating count. Please try again.');
+    }
+  };
+
   return (
     <div className="App">
        {displayPopUp && <p className='display-message'>{message}</p>}
